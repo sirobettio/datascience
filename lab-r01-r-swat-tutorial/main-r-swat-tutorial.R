@@ -4,7 +4,8 @@ Sys.setenv(CAS_CLIENT_SSL_CA_LIST="C:/dev/viyacertificates/lab01-viya34smp/vault
 
 # Connect to CAS 
 #conn <- swat::CAS('viya34smp.nordiclab.sashq-r.openstack.sas.com', 8777, username="siro", password="Orion123", protocol="https")
-conn <- swat::CAS('viya34smp.nordiclab.sashq-r.openstack.sas.com', 5570, username="siro", password="Orion123") 
+#conn <- swat::CAS('viya34smp.nordiclab.sashq-r.openstack.sas.com', 5570, username="siro", password="Orion123") 
+conn <- swat::CAS('viya34smp.nordiclab.sashq-r.openstack.sas.com', 5570) 
 
 # Load Iris data set into in-memory table 
 iris.ct <- as.casTable(conn, iris) 
