@@ -5,6 +5,13 @@ caslib mycaslib datasource=(srctype="path") path="/sasdata/caslibs/testdata" ses
 
 libname mycas cas caslib=mycaslib;
 
+/* 
+Use casutil to:
+- drop a table in a caslib
+- load a table in a caslib
+- save a table in a caslib
+- list files in a caslib 
+*/
 proc casutil incaslib="mycaslib";
    list files; 
    droptable casdata="IRIS" incaslib="mycaslib" quiet;
@@ -15,20 +22,24 @@ data mycas.iris;
 run; 
 proc print data=mycas.iris(obs=5) ; run;
 
-/*
 proc casutil incaslib="mycaslib" outcaslib="mycaslib"; 
    save casdata="iris" replace; 
 run;
-*/
+
 proc casutil incaslib="mycaslib";
    list files; 
 run;
 
-proc cas; /* 1 */
+/* 
+Use cas to:
+- load a table in a caslib
+- call the simple.correlation function
+*/
+proc cas;
 	table.loadtable caslib="mycaslib" path="iris.sashdat" casOut={name="IRIS"};
 	simple.correlation result=x table={groupBy={"Species"}, name="IRIS", orderBy={"SepalLength"}};
 run;
-	print x; /* 4 */
+	print x;
 run; 
 
 
